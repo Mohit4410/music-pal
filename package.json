@@ -1,0 +1,28 @@
+{
+  "name": "discord-music-bot",
+  "version": "1.0.0",
+  "description": "High-fidelity, production-ready Discord music bot using Discord.js v14 and Lavalink v4",
+  "type": "module",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "start:bot": "node src/index.js",
+    "deploy": "node src/deploy-commands.js"
+  },
+  "keywords": [
+    "discord",
+    "discord.js",
+    "music-bot",
+    "lavalink",
+    "lavalink-v4",
+    "moonlink",
+    "audio"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7",
+    "moonlink.js": "^5.2.0"
+  }
+}

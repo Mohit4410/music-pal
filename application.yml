@@ -1,0 +1,65 @@
+server:
+  port: ${SERVER_PORT:2333}
+  address: 0.0.0.0
+  http2:
+    enabled: false
+
+lavalink:
+  plugins:
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
+      snapshot: false
+
+  server:
+    password: "youshallnotpass"
+    sources:
+      youtube: false # Built-in source disabled in v4; handled by dev.lavalink.youtube plugin
+      soundcloud: true
+      bandcamp: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+
+    # Low-Memory Audio Configuration — optimized for Pterodactyl free-tier (512MB container)
+    bufferDurationMs: 200           # Reduced from 400ms to halve audio buffer RAM usage
+    frameBufferDurationMs: 2000     # Reduced from 5000ms — still enough for smooth playback
+    opusEncodingQuality: 10         # Maximum Opus encoder quality (10 = maximum fidelity)
+    resamplingQuality: LOW          # Reduced from HIGH — saves significant CPU+RAM on ARM/slow hosts
+    trackStuckThresholdMs: 10000    # Decoder hang timeout before triggering recovery
+    useSeekGhosting: true           # Eliminates clicks and pops when seeking
+    playerUpdateInterval: 5         # Frequency of player progress updates in seconds
+
+    filters:
+      volume: true
+      equalizer: true
+      karaoke: false
+      timescale: false
+      tremolo: false
+      vibrato: false
+      distortion: false
+      rotation: false
+      channelMix: false
+      lowPass: false
+
+plugins:
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    clients:
+      - MUSIC
+      - ANDROID_VR
+      - WEB
+      - WEBEMBEDDED
+
+logging:
+  file:
+    path: ./logs/lavalink.log
+  level:
+    root: INFO
+    lavalink: INFO
+
+metrics:
+  prometheus:
+    enabled: false
